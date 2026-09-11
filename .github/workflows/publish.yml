@@ -35,7 +35,7 @@ jobs:
       - name: Set version tag
         id: vars
         run: |
-          echo "VERSION=17.3-lts" >> $GITHUB_OUTPUT
+          echo "VERSION=v6-standard" >> $GITHUB_OUTPUT
 
       - name: Build & push lo
         uses: docker/build-push-action@v6

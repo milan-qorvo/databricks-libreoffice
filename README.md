@@ -4,25 +4,25 @@ Custom Databricks Runtime Docker images with [LibreOffice](https://www.libreoffi
 
 These images are built on top of:
 
-- `databricksruntime/standard:17.3-LTS`
+- `databricksruntime/environment:v6-standard`
 
 `HOME` is set to `/tmp` to satisfy LibreOffice's requirement for a writable home directory in the Databricks execution environment.
 
 ## Image variants (dependency tree)
 
 ```text
-databricksruntime/standard:17.3-LTS
+databricksruntime/environment:v6-standard
             |
             v
-ghcr.io/milan-qorvo/databricks-libreoffice:17.3-lts-lo
+ghcr.io/milan-qorvo/databricks-libreoffice:v6-standard-lo
   (LibreOffice)
             |
             v
-ghcr.io/milan-qorvo/databricks-libreoffice:17.3-lts-lo-fonts
+ghcr.io/milan-qorvo/databricks-libreoffice:v6-standard-lo-fonts
   (LibreOffice + fonts)
             |
             v
-ghcr.io/milan-qorvo/databricks-libreoffice:17.3-lts-lo-fonts-qpdf
+ghcr.io/milan-qorvo/databricks-libreoffice:v6-standard-lo-fonts-qpdf
   (LibreOffice + fonts + qpdf)
 ```
 
@@ -33,15 +33,15 @@ The images must be built in order, since each variant uses the previous one as i
 **1. lo** (LibreOffice)
 
 ```bash
-docker build -t databricks-libreoffice:17.3-lts-lo -f lo/Dockerfile .
+docker build -t databricks-libreoffice:v6-standard-lo -f lo/Dockerfile .
 ```
 
 **2. lo-fonts** (LibreOffice + fonts)
 
 ```bash
 docker build \
-  --build-arg BASE_IMAGE=databricks-libreoffice:17.3-lts-lo \
-  -t databricks-libreoffice:17.3-lts-lo-fonts \
+  --build-arg BASE_IMAGE=databricks-libreoffice:v6-standard-lo \
+  -t databricks-libreoffice:v6-standard-lo-fonts \
   -f lo-fonts/Dockerfile .
 ```
 
@@ -49,7 +49,7 @@ docker build \
 
 ```bash
 docker build \
-  --build-arg BASE_IMAGE=databricks-libreoffice:17.3-lts-lo-fonts \
-  -t databricks-libreoffice:17.3-lts-lo-fonts-qpdf \
+  --build-arg BASE_IMAGE=databricks-libreoffice:v6-standard-lo-fonts \
+  -t databricks-libreoffice:v6-standard-lo-fonts-qpdf \
   -f lo-fonts-qpdf/Dockerfile .
 ```

@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=ghcr.io/milan-qorvo/databricks-libreoffice:17.3-lts-lo
+ARG BASE_IMAGE=ghcr.io/milan-qorvo/databricks-libreoffice:v6-standard-lo
 FROM ${BASE_IMAGE}
 
 USER root

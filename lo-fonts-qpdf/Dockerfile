@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=ghcr.io/milan-qorvo/databricks-libreoffice:17.3-lts-lo-fonts
+ARG BASE_IMAGE=ghcr.io/milan-qorvo/databricks-libreoffice:v6-standard-lo-fonts
 FROM ${BASE_IMAGE}
 
 USER root

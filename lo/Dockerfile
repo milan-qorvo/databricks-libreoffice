@@ -1,4 +1,4 @@
-FROM databricksruntime/standard:17.3-LTS
+FROM databricksruntime/environment:v6-standard
 
 USER root
 RUN apt-get update && \

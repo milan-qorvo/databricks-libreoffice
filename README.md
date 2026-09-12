@@ -24,6 +24,10 @@ ghcr.io/milan-qorvo/databricks-libreoffice:v6-standard-lo-fonts
             v
 ghcr.io/milan-qorvo/databricks-libreoffice:v6-standard-lo-fonts-qpdf
   (LibreOffice + fonts + qpdf)
+            |
+            v
+ghcr.io/milan-qorvo/databricks-libreoffice:v6-standard-lo-fonts-qpdf-bwrap
+  (LibreOffice + fonts + qpdf + bubblewrap)
 ```
 
 ## Building locally
@@ -52,4 +56,13 @@ docker build \
   --build-arg BASE_IMAGE=databricks-libreoffice:v6-standard-lo-fonts \
   -t databricks-libreoffice:v6-standard-lo-fonts-qpdf \
   -f lo-fonts-qpdf/Dockerfile .
+```
+
+**4. lo-fonts-qpdf-bwrap** (LibreOffice + fonts + qpdf + bubblewrap)
+
+```bash
+docker build \
+  --build-arg BASE_IMAGE=databricks-libreoffice:v6-standard-lo-fonts-qpdf \
+  -t databricks-libreoffice:v6-standard-lo-fonts-qpdf-bwrap \
+  -f lo-fonts-qpdf-bwrap/Dockerfile .
 ```

@@ -67,3 +67,14 @@ jobs:
             BASE_IMAGE=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.VERSION }}-lo-fonts
           tags: |
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.VERSION }}-lo-fonts-qpdf
+
+      - name: Build & push lo-fonts-qpdf-bwrap
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: lo-fonts-qpdf-bwrap/Dockerfile
+          push: true
+          build-args: |
+            BASE_IMAGE=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.VERSION }}-lo-fonts-qpdf
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.VERSION }}-lo-fonts-qpdf-bwrap

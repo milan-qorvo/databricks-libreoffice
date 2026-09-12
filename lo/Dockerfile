@@ -1,4 +1,5 @@
-FROM databricksruntime/environment:v6-standard
+ARG BASE_IMAGE=databricksruntime/environment:v6-standard
+FROM ${BASE_IMAGE}
 
 USER root
 RUN apt-get update && \

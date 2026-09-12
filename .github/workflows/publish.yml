@@ -35,46 +35,91 @@ jobs:
       - name: Set version tag
         id: vars
         run: |
-          echo "VERSION=v6-standard" >> $GITHUB_OUTPUT
+          echo "V6_VERSION=v6-standard" >> $GITHUB_OUTPUT
+          echo "DBR_VERSION=18.3-LTS" >> $GITHUB_OUTPUT
 
-      - name: Build & push lo
+      - name: Build & push v6-standard lo
         uses: docker/build-push-action@v6
         with:
           context: .
           file: lo/Dockerfile
           push: true
           tags: |
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.VERSION }}-lo
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.V6_VERSION }}-lo
 
-      - name: Build & push lo-fonts
+      - name: Build & push v6-standard lo-fonts
         uses: docker/build-push-action@v6
         with:
           context: .
           file: lo-fonts/Dockerfile
           push: true
           build-args: |
-            BASE_IMAGE=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.VERSION }}-lo
+            BASE_IMAGE=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.V6_VERSION }}-lo
           tags: |
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.VERSION }}-lo-fonts
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.V6_VERSION }}-lo-fonts
 
-      - name: Build & push lo-fonts-qpdf
+      - name: Build & push v6-standard lo-fonts-qpdf
         uses: docker/build-push-action@v6
         with:
           context: .
           file: lo-fonts-qpdf/Dockerfile
           push: true
           build-args: |
-            BASE_IMAGE=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.VERSION }}-lo-fonts
+            BASE_IMAGE=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.V6_VERSION }}-lo-fonts
           tags: |
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.VERSION }}-lo-fonts-qpdf
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.V6_VERSION }}-lo-fonts-qpdf
 
-      - name: Build & push lo-fonts-qpdf-bwrap
+      - name: Build & push v6-standard lo-fonts-qpdf-bwrap
         uses: docker/build-push-action@v6
         with:
           context: .
           file: lo-fonts-qpdf-bwrap/Dockerfile
           push: true
           build-args: |
-            BASE_IMAGE=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.VERSION }}-lo-fonts-qpdf
+            BASE_IMAGE=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.V6_VERSION }}-lo-fonts-qpdf
           tags: |
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.VERSION }}-lo-fonts-qpdf-bwrap
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.V6_VERSION }}-lo-fonts-qpdf-bwrap
+
+      - name: Build & push 18.3-LTS lo
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: lo/Dockerfile
+          push: true
+          build-args: |
+            BASE_IMAGE=databricksruntime/standard:18.3-LTS
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.DBR_VERSION }}-lo
+
+      - name: Build & push 18.3-LTS lo-fonts
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: lo-fonts/Dockerfile
+          push: true
+          build-args: |
+            BASE_IMAGE=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.DBR_VERSION }}-lo
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.DBR_VERSION }}-lo-fonts
+
+      - name: Build & push 18.3-LTS lo-fonts-qpdf
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: lo-fonts-qpdf/Dockerfile
+          push: true
+          build-args: |
+            BASE_IMAGE=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.DBR_VERSION }}-lo-fonts
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.DBR_VERSION }}-lo-fonts-qpdf
+
+      - name: Build & push 18.3-LTS lo-fonts-qpdf-bwrap
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: lo-fonts-qpdf-bwrap/Dockerfile
+          push: true
+          build-args: |
+            BASE_IMAGE=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.DBR_VERSION }}-lo-fonts-qpdf
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.DBR_VERSION }}-lo-fonts-qpdf-bwrap

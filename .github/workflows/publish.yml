@@ -80,6 +80,17 @@ jobs:
           tags: |
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.V6_VERSION }}-lo-fonts-qpdf-bwrap
 
+      - name: Build & push v6-standard lo-fonts-qpdf-bwrap-playwright
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: lo-fonts-qpdf-bwrap-playwright/Dockerfile
+          push: true
+          build-args: |
+            BASE_IMAGE=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.V6_VERSION }}-lo-fonts-qpdf-bwrap
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.V6_VERSION }}-lo-fonts-qpdf-bwrap-playwright
+
       - name: Build & push 18.3-LTS lo
         uses: docker/build-push-action@v6
         with:
@@ -123,3 +134,14 @@ jobs:
             BASE_IMAGE=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.DBR_VERSION }}-lo-fonts-qpdf
           tags: |
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.DBR_VERSION }}-lo-fonts-qpdf-bwrap
+
+      - name: Build & push 18.3-LTS lo-fonts-qpdf-bwrap-playwright
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: lo-fonts-qpdf-bwrap-playwright/Dockerfile
+          push: true
+          build-args: |
+            BASE_IMAGE=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.DBR_VERSION }}-lo-fonts-qpdf-bwrap
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.DBR_VERSION }}-lo-fonts-qpdf-bwrap-playwright

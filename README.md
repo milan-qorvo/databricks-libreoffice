@@ -33,6 +33,10 @@ ghcr.io/milan-qorvo/databricks-libreoffice:v6-standard-lo-fonts-qpdf
             v
 ghcr.io/milan-qorvo/databricks-libreoffice:v6-standard-lo-fonts-qpdf-bwrap
   (LibreOffice + fonts + qpdf + bubblewrap)
+            |
+            v
+ghcr.io/milan-qorvo/databricks-libreoffice:v6-standard-lo-fonts-qpdf-bwrap-playwright
+  (LibreOffice + fonts + qpdf + bubblewrap + Playwright)
 ```
 
 ### `18.3-LTS` variants
@@ -55,6 +59,10 @@ ghcr.io/milan-qorvo/databricks-libreoffice:18.3-LTS-lo-fonts-qpdf
             v
 ghcr.io/milan-qorvo/databricks-libreoffice:18.3-LTS-lo-fonts-qpdf-bwrap
   (LibreOffice + fonts + qpdf + bubblewrap)
+            |
+            v
+ghcr.io/milan-qorvo/databricks-libreoffice:18.3-LTS-lo-fonts-qpdf-bwrap-playwright
+  (LibreOffice + fonts + qpdf + bubblewrap + Playwright)
 ```
 
 ## Building locally
@@ -94,6 +102,15 @@ docker build \
   -f lo-fonts-qpdf-bwrap/Dockerfile .
 ```
 
+**5. lo-fonts-qpdf-bwrap-playwright** (LibreOffice + fonts + qpdf + bubblewrap + Playwright)
+
+```bash
+docker build \
+  --build-arg BASE_IMAGE=databricks-libreoffice:v6-standard-lo-fonts-qpdf-bwrap \
+  -t databricks-libreoffice:v6-standard-lo-fonts-qpdf-bwrap-playwright \
+  -f lo-fonts-qpdf-bwrap-playwright/Dockerfile .
+```
+
 ### Building the `18.3-LTS` variants
 
 Use the same Dockerfiles, starting with the alternate base image and using the `18.3-LTS` tag prefix:
@@ -118,4 +135,9 @@ docker build \
   --build-arg BASE_IMAGE=databricks-libreoffice:18.3-LTS-lo-fonts-qpdf \
   -t databricks-libreoffice:18.3-LTS-lo-fonts-qpdf-bwrap \
   -f lo-fonts-qpdf-bwrap/Dockerfile .
+
+docker build \
+  --build-arg BASE_IMAGE=databricks-libreoffice:18.3-LTS-lo-fonts-qpdf-bwrap \
+  -t databricks-libreoffice:18.3-LTS-lo-fonts-qpdf-bwrap-playwright \
+  -f lo-fonts-qpdf-bwrap-playwright/Dockerfile .
 ```

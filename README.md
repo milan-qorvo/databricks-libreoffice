@@ -9,6 +9,8 @@ These images are built on top of:
 
 `HOME` is set to `/tmp` to satisfy LibreOffice's requirement for a writable home directory in the Databricks execution environment.
 
+The `lo-fonts-qpdf-bwrap-pythonlibs` variant also installs the Python packages listed in `requirements.txt` and the Playwright browser binaries and system dependencies.
+
 ## Image variants
 
 The same variants are published for both base images. The tag prefix identifies the base image.
@@ -35,8 +37,8 @@ ghcr.io/milan-qorvo/databricks-libreoffice:v6-standard-lo-fonts-qpdf-bwrap
   (LibreOffice + fonts + qpdf + bubblewrap)
             |
             v
-ghcr.io/milan-qorvo/databricks-libreoffice:v6-standard-lo-fonts-qpdf-bwrap-playwright
-  (LibreOffice + fonts + qpdf + bubblewrap + Playwright)
+ghcr.io/milan-qorvo/databricks-libreoffice:v6-standard-lo-fonts-qpdf-bwrap-pythonlibs
+  (LibreOffice + fonts + qpdf + bubblewrap + Python libraries + Playwright)
 ```
 
 ### `18.3-LTS` variants
@@ -61,8 +63,8 @@ ghcr.io/milan-qorvo/databricks-libreoffice:18.3-LTS-lo-fonts-qpdf-bwrap
   (LibreOffice + fonts + qpdf + bubblewrap)
             |
             v
-ghcr.io/milan-qorvo/databricks-libreoffice:18.3-LTS-lo-fonts-qpdf-bwrap-playwright
-  (LibreOffice + fonts + qpdf + bubblewrap + Playwright)
+ghcr.io/milan-qorvo/databricks-libreoffice:18.3-LTS-lo-fonts-qpdf-bwrap-pythonlibs
+  (LibreOffice + fonts + qpdf + bubblewrap + Python libraries + Playwright)
 ```
 
 ## Building locally
@@ -102,13 +104,13 @@ docker build \
   -f lo-fonts-qpdf-bwrap/Dockerfile .
 ```
 
-**5. lo-fonts-qpdf-bwrap-playwright** (LibreOffice + fonts + qpdf + bubblewrap + Playwright)
+**5. lo-fonts-qpdf-bwrap-pythonlibs** (LibreOffice + fonts + qpdf + bubblewrap + Python libraries + Playwright)
 
 ```bash
 docker build \
   --build-arg BASE_IMAGE=databricks-libreoffice:v6-standard-lo-fonts-qpdf-bwrap \
-  -t databricks-libreoffice:v6-standard-lo-fonts-qpdf-bwrap-playwright \
-  -f lo-fonts-qpdf-bwrap-playwright/Dockerfile .
+  -t databricks-libreoffice:v6-standard-lo-fonts-qpdf-bwrap-pythonlibs \
+  -f lo-fonts-qpdf-bwrap-pythonlibs/Dockerfile .
 ```
 
 ### Building the `18.3-LTS` variants
@@ -138,6 +140,6 @@ docker build \
 
 docker build \
   --build-arg BASE_IMAGE=databricks-libreoffice:18.3-LTS-lo-fonts-qpdf-bwrap \
-  -t databricks-libreoffice:18.3-LTS-lo-fonts-qpdf-bwrap-playwright \
-  -f lo-fonts-qpdf-bwrap-playwright/Dockerfile .
+  -t databricks-libreoffice:18.3-LTS-lo-fonts-qpdf-bwrap-pythonlibs \
+  -f lo-fonts-qpdf-bwrap-pythonlibs/Dockerfile .
 ```

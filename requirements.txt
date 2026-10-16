@@ -1,2 +1,4 @@
 requests-ntlm
 playwright
+python-pptx
+openpyxl
